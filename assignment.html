@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit Chaudhary | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Styles & Variables --- */
+        /* --- General Styles & Variables (Updated) --- */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue */
+            --secondary-color: #3498db; /* Bright Blue */
+            --background-color: #f4f6f9; /* A slightly softer white */
+            --text-color: #34495e; /* Dark Gray */
+            --card-bg-color: #ffffff;
+            --header-font: 'Montserrat', sans-serif;
+            --body-font: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            /* REASONING: Increased the base font size for the whole page. 
+               This will make all text, including paragraphs and lists, larger and more readable. */
+            font-size: 18px; 
+            line-height: 1.7;
+        }
+
+        .container {
+            /* REASONING: Changed from a fixed max-width to a percentage.
+               This allows the layout to fluidly adapt and use more space on wider screens. */
+            width: 100%;
+            
+            /* REASONING: Increased the maximum width to a more generous value.
+               This ensures the layout doesn't become too stretched out on very large monitors. */
+            max-width: 1360px;
+            
+            margin: 0 auto; /* This keeps it centered */
+            padding: 0px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--header-font);
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        /* REASONING: Made headings larger to match the new body font size and maintain a strong visual hierarchy. */
+        h1 { font-size: 3.5em; }
+        h2 { font-size: 2.3em; border-bottom: 3px solid var(--secondary-color); padding-bottom: 15px; margin-bottom: 40px; }
+        h3 { font-size: 1.5em; color: var(--secondary-color); }
+
+        section {
+            padding: 70px 0;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: var(--card-bg-color);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            font-family: var(--header-font);
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        /* --- Hero Section (Updated) --- */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* REASONING: Removed 'min-height: 80vh' and am using padding instead. 
+               This makes the section height more dependent on the content inside, 
+               reducing the excessive empty space. The top padding is larger to 
+               keep content clear of the fixed navigation bar. */
+            padding: 140px 0 80px 0; 
+            min-height: auto; /* Reset min-height */
+        }
+
+        .hero-text h1 {
+             /* REASONING: Increased font size for better impact and readability. */
+            font-size: 3.5em; 
+        }
+
+        .hero-text p {
+            /* REASONING: Slightly increased font size for the description. */
+            font-size: 1.3em;
+            margin-bottom: 25px;
+        }
+
+        .hero-image img {
+            /* REASONING: Increased image size to better match the larger text. */
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--card-bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category ul li {
+            padding: 5px 0;
+        }
+
+        /* --- Experience & Projects Card Layout --- */
+        .card-container {
+            display: grid;
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--card-bg-color);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-header span {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tags li {
+            background-color: var(--background-color);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer h2 {
+            color: #fff;
+            border: none;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-image { margin-bottom: 30px; }
+
+            nav { flex-direction: column; }
+            nav ul { padding: 15px 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Harshit Chaudhary</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <section id="hero">
+                <div class="hero-text">
+                    <h1>Harshit Chaudhary</h1>
+                    <p>Computer Science Student specializing in AI & Analytics. [cite: 5] Passionate about building intelligent solutions and solving complex problems.</p>
+                    <a href="#projects" class="cta-button">View My Work</a>
+                </div>
+                <div class="hero-image">
+                    <img src="D:\New folder\Frontend-Dev\WhatsApp Image 2025-07-28 at 16..jpg" alt="A professional headshot of Harshit Chaudhary">
+                </div>
+            </section>
+
+            <section id="about">
+                <h2>About Me</h2>
+                <p>
+                    I am a dedicated and passionate Computer Science student at GLA University, with a strong focus on Artificial Intelligence and Analytics. [cite: 2, 5] I thrive on challenges and am particularly skilled in <strong>Data Structures and Algorithms</strong>, having successfully solved over <strong>150 problems</strong> on various platforms. My experience as a Project Intern at NIT Surathkal involved working on autonomous vehicle simulations, which ignited my interest in real-world AI applications. [cite: 8, 12] My goal is to leverage my skills in machine learning and software development to create impactful and innovative technology.
+                </p>
+            </section>
+            
+            <section id="skills">
+                <h2>My Skillset</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Technical Skills</h3>
+                        <ul>
+                            <li><strong>Languages:</strong> Python, Java, R, SQL [cite: 33]</li>
+                            <li><strong>Core Competencies:</strong> Data Structures & Algorithms (150+ problems solved)</li>
+                            <li><strong>AI/ML:</strong> Machine Learning, Autoware, Data Analysis & Visualization [cite: 33]</li>
+                            <li><strong>Web Development:</strong> React, Flask, REST APIs, PostgreSQL [cite: 28, 33]</li>
+                            <li><strong>Tools:</strong> Git, GitHub, ROS 2, RViz, Docker [cite: 4, 14]</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Professional Skills</h3>
+                        <ul>
+                            <li>Problem-Solving [cite: 34]</li>
+                            <li>Leadership & Team Collaboration [cite: 34]</li>
+                            <li>Public Speaking & Argumentation [cite: 34, 45, 46]</li>
+                            <li>Time Management [cite: 34]</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Interests</h3>
+                        <ul>
+                            <li>Sketching & Reading [cite: 34]</li>
+                            <li>History & Geopolitics [cite: 34]</li>
+                            <li>Traveling & Mathematics [cite: 34]</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2>Experience</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Project Intern at NIT Surathkal, Karnataka [cite: 8]</h3>
+                            <span>Jun 2025 - Aug 2025 [cite: 11]</span>
+                        </div>
+                        <p>
+                            Worked on an autonomous vehicle simulation project using Autoware.Auto. Key responsibilities included integrating real-world campus maps from satellite imagery and developing GPS-based path planning. Gained hands-on experience with ROS 2, RViz, and Lanelet2 for visualization and map building. [cite: 12, 13, 14]
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                             <h3>IntelView: AI-Powered Interview Excellence [cite: 21]</h3>
+                            <span>Jan 2025 - May 2025 [cite: 26]</span>
+                        </div>
+                        <p>
+                           Developed a full-stack AI mock interview system. The application uses the Gemini API to generate role-specific questions and evaluates spoken responses with React Speech-to-Text, providing users with data-driven feedback reports for performance improvement. [cite: 27, 28]
+                        </p>
+                        <ul class="tags">
+                            <li>React</li>
+                            <li>Flask</li>
+                            <li>PostgreSQL</li>
+                            <li>Gemini API</li>
+                            <li>Clerk Auth</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>AI-Powered Chess Game [cite: 29]</h3>
+                            <span>Jan 2024 - May 2024</span>
+                        </div>
+                        <p>
+                            Built a fully interactive AI chess game using Python and Pygame. I architected a rule-based expert system for the AI's behavior, enabling complex and realistic non-player character (NPC) interactions. [cite: 30]
+                        </p>
+                        <ul class="tags">
+                           <li>Python</li>
+                           <li>Pygame</li>
+                           <li>Expert Systems</li>
+                           <li>Game AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="education">
+                <h2>Education</h2>
+                <div class="card-container">
+                    <div class="card">
+                         <h3>GLA University, Mathura [cite: 2, 10]</h3>
+                         <p><strong>B.Tech in Computer Science Honours (AI & Analytics)</strong> | CGPA: 8.23 [cite: 5]</p>
+                         <span>2023 - Present</span>
+                    </div>
+                     <div class="card">
+                         <h3>Army Public School, Agra [cite: 6]</h3>
+                         <p><strong>Intermediate (CBSE)</strong> | Percentage: 79.80% [cite: 6]</p>
+                         <span>Completed 2023</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer id="contact">
+        <h2>Get In Touch</h2>
+        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out!</p>
+        <div class="social-links">
+            <a href="mailto:harshitchaudhry109@gmail.com" target="_blank">Email</a> 
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">GitHub</a>
+        </div>
+        <p class="copyright">&copy; 2025 Harshit Chaudhary. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
